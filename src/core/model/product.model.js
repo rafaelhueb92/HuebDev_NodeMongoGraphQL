@@ -6,7 +6,7 @@ const productSchema = new Schema(
     name: String,
     description: String,
     ean: String,
-    balance: Number
+    balance: { type: Number, default: 0 }
   },
   {
     timestamps: true

@@ -1,0 +1,44 @@
+type Product {
+    _id: ID
+    name: String
+    description: String
+    ean: String
+    balance: Int
+}
+
+type Transaction {
+    _id: ID
+    product:Product
+    typeOfTransaction:[String]
+    quantity: Int
+    provider: String
+}
+
+input ProductInput {
+    id: ID
+    name: String
+    description: String
+    ean: String
+    balance: Int
+}
+
+input TransactionInput {
+    id: ID
+    product:ProductInput
+    typeOfTransaction:String
+    quantity: Int
+    provider: String
+}
+
+type Query {
+  Product(id: ID): Product
+  Products: [Product]
+  LastTransaction: Transaction
+}
+
+type Mutation {
+  StoreProduct(include: ProductInput!): Product
+  AlterProduct(alter: ProductInput!): Product
+  DelProduct(id: ID): Product
+  StoreTransaction(include:TransactionInput!): Transaction
+}
